@@ -1,0 +1,10 @@
+.env
+.local
+.idea
+.vscode
+
+node_modules
+build
+.build
+.yarn
+.npm

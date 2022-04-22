@@ -1,0 +1,21 @@
+{
+  "name": "tjejerkodar-nodejs-intro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rautellin/tjejerkodar-nodejs-intro.git"
+  },
+  "author": "",
+  "license": "none",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
