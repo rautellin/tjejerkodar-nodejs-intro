@@ -1,20 +1,37 @@
 'use strict';
 const jsonData = require('../data/netflix-titles.json')
+const express = require('express') // Imports express package
 
-module.exports = (router) => {
+const handleTitle = (req, res) => {
+    const id = req.params.id || req.params['id']
+
+    const title = jsonData.find(item => item.show_id === +id)
+    if (typeof title === 'undefined') {
+        console.log('empty')
+        res.status(400).send(`There's no matching title`)
+    } else {
+        res.send(title)
+    }
+};
+
+module.exports = (router =  express.Router()) => {
+
     // Get one title
-    router.get('/titles/:id', (req, res) => {
+    router.get('/titles/:id', (req, res, next) => {
         const id = req.params.id || req.params['id']
 
         //console.log(req);
         const title = jsonData.find(item => item.show_id === +id)
         if (typeof title === 'undefined') {
             console.log('empty')
-            res.status(400).send(`There's no matching title`)
+            res.status(404).send(`There's no matching title`)
         } else {
             res.send(title)
         }
     })
+
+    // Different way of adding a handler to a route
+    router.get('/titles/:id', handleTitle)
 
     // Filter titles
     router.get('/titles', (req, res) => {
@@ -25,4 +42,6 @@ module.exports = (router) => {
 
         // Good practice to return empty array when no titles are found for client rather than an error
     })
+
+    return router;
 };
