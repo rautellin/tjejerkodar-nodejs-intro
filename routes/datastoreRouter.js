@@ -1,7 +1,8 @@
 'use strict';
 const {getArticleById, fetchArticlesByPrice} = require('../repositories/datastoreRepository') // Imports the datastoreRepository module
+const express = require('express') // Imports express package
 
-module.exports = (router, errorHandler) => {
+module.exports = (router = express.Router(), errorHandler) => { // adds a default value, default value not needed but good practise
     // Get one article
     router.get('/articles/:id', (req, res) => {
         const id = req.params.id || req.params['id']
