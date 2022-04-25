@@ -7,14 +7,14 @@ const handleTitle = (req, res) => {
 
     const title = jsonData.find(item => item.show_id === +id)
     if (typeof title === 'undefined') {
-        console.log('empty')
-        res.status(400).send(`There's no matching title`)
+        res.status(404).json({error: 'There\'s no matching title'})
     } else {
-        res.send(title)
+        res.status(200).json(title)
     }
 };
 
-module.exports = (router =  express.Router()) => {
+// Exports netflixRouter setup function as module
+module.exports = (router = express.Router()) => { // adds a default value
 
     // Get one title
     router.get('/titles/:id', (req, res, next) => {
@@ -23,10 +23,9 @@ module.exports = (router =  express.Router()) => {
         //console.log(req);
         const title = jsonData.find(item => item.show_id === +id)
         if (typeof title === 'undefined') {
-            console.log('empty')
-            res.status(404).send(`There's no matching title`)
+            res.status(404).json({error: 'There\'s no matching title'})
         } else {
-            res.send(title)
+            res.status(200).json(title)
         }
     })
 
@@ -38,7 +37,7 @@ module.exports = (router =  express.Router()) => {
         const year = req.query.year || req.query['year']
 
         const titles = jsonData.filter(item => item.release_year === +year)
-        res.send(titles)
+        res.status(200).json(titles)
 
         // Good practice to return empty array when no titles are found for client rather than an error
     })
