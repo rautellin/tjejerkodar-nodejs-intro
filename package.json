@@ -13,6 +13,7 @@
   "author": "",
   "license": "none",
   "dependencies": {
+    "@google-cloud/datastore": "^6.6.2",
     "express": "^4.17.3"
   },
   "devDependencies": {
