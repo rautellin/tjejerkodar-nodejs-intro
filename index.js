@@ -2,7 +2,8 @@
 require('dotenv').config() // Imports dotenv to enable env variables
 const express = require('express') // Imports express package
 const app = express() // Creates an instance of express
-app.use(express.json()); // Enables request body parsing to be in json format
+app.use(express.json()) // Enables request body parsing to be in json format
+const errorHandler = require('./utils/errorHandler')
 
 // Defines the port the app will run on. Defaults to 3000 (8080 is usually also used as default)
 // Can be overridden when starting the server. For example using an .env file or running with the command PORT=9000 npm start
@@ -19,12 +20,15 @@ app.get('/', (req, res) => {
 })
 
 // Adding a router
-const router = express.Router(); // Creates a new router object to handle requests
-app.use(router); // Tell express to listen to routes defined in router
+const router = express.Router() // Creates a new router object to handle requests
+app.use(router) // Tell express to listen to routes defined in router
 
-const netflixRouter = require('./routes/netflixRouter'); // importing router module
-netflixRouter(router); // passing router object to router module to add more routes
+const netflixRouter = require('./routes/netflixRouter') // Importing router module
+netflixRouter(router) // Passing router object to router module to add more routes
 
 // Different way of adding a router
-//const netflixRouter = require('./routes/netflixRouter'); // importing router module
-//app.use(netflixRouter());
+//const netflixRouter = require('./routes/netflixRouter') // Importing router module
+//app.use(netflixRouter())
+
+const datastoreRouter = require('./routes/datastoreRouter')
+datastoreRouter(router, errorHandler) // Also passing the errorHandler helper function to router module to handle errors
