@@ -1,27 +1,14 @@
 'use strict';
-const jsonData = require('../data/netflix-titles.json')
-const express = require('express') // Imports express package
-
-const handleTitle = (req, res) => {
-    const id = req.params.id || req.params['id']
-
-    const title = jsonData.find(item => item.show_id === +id)
-    if (typeof title === 'undefined') {
-        res.status(404).json({error: 'There\'s no matching title'})
-    } else {
-        res.status(200).json(title)
-    }
-};
+const {getTitleById, getTitlesByYear} = require('../repositories/netflixRepository') // Imports the datastoreRepository module
 
 // Exports netflixRouter setup function as module
-module.exports = (router = express.Router()) => { // adds a default value
-
+module.exports = (router) => {
     // Get one title
-    router.get('/titles/:id', (req, res, next) => {
-        const id = req.params.id || req.params['id']
+    router.get('/titles/:id', (req, res) => {
+        const id = req.params.id || req.params['id'] // req object contains of a lot of different properties, try to console log the entire object to see more
 
-        //console.log(req);
-        const title = jsonData.find(item => item.show_id === +id)
+        const title = getTitleById(id);
+
         if (typeof title === 'undefined') {
             res.status(404).json({error: 'There\'s no matching title'})
         } else {
@@ -29,16 +16,13 @@ module.exports = (router = express.Router()) => { // adds a default value
         }
     })
 
-    // Different way of adding a handler to a route
-    router.get('/titles/:id', handleTitle)
-
     // Filter titles
     router.get('/titles', (req, res) => {
         const year = req.query.year || req.query['year']
 
-        const titles = jsonData.filter(item => item.release_year === +year)
-        res.status(200).json(titles)
+        const titles = getTitlesByYear(year);
 
+        res.status(200).json(titles)
         // Good practice to return empty array when no titles are found for client rather than an error
     })
 
