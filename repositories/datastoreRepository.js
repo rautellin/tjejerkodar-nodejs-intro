@@ -8,15 +8,15 @@ const articleDBKind = 'price' // Specifies which kind/table in our connected Dat
  * @param {String} id
  */
 const getArticleById = (id) => {
-    const articleKey = datastore.key([articleDBKind, id])
+  const articleKey = datastore.key([articleDBKind, id])
 
-    return datastore
-        .get(articleKey)
-        .then(([article]) => article)
-        .catch((error) => {
-            console.log(error);
-            return Promise.reject(error);
-        })
+  return datastore
+    .get(articleKey)
+    .then(([article]) => article)
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    })
 };
 
 /**
@@ -24,19 +24,19 @@ const getArticleById = (id) => {
  * @param {Number} limit
  */
 const getArticlesByPrice = (price, limit = 15) => {
-    const query = datastore
-        .createQuery(articleDBKind)
-        .filter('price', '=', price).limit(limit);
+  const query = datastore
+    .createQuery(articleDBKind)
+    .filter('price', '=', price).limit(limit);
 
-    return datastore.runQuery(query).then(([articles]) => articles)
-        .catch((error) => {
-            console.log(error);
-            return Promise.reject(error);
-        });
+  return datastore.runQuery(query).then(([articles]) => articles)
+    .catch((error) => {
+      console.log(error);
+      return Promise.reject(error);
+    });
 };
 
 // Exports functions as a module
 module.exports = {
-    getArticleById,
-    fetchArticlesByPrice: getArticlesByPrice, // same as above, used if you want to rename the function
+  getArticleById,
+  fetchArticlesByPrice: getArticlesByPrice, // same as above, used if you want to rename the function
 };

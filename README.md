@@ -1,6 +1,4 @@
-
 # Node.js intro
-
 
 ## Run Locally
 
@@ -28,11 +26,10 @@ Start the server
   npm start
 ```
 
-
 ## Useful Links
 
- - [json.package Documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json)
- - [node.js Intro Documentation](https://nodejs.dev/learn/introduction-to-nodejs)
- - [JSON Formatter Plugin (Chrome)](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
- - [Best Practices for Naming REST API Endpoints](https://restfulapi.net/resource-naming/)
+- [json.package Documentation](https://docs.npmjs.com/cli/v8/configuring-npm/package-json)
+- [node.js Intro Documentation](https://nodejs.dev/learn/introduction-to-nodejs)
+- [JSON Formatter Plugin (Chrome)](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa)
+- [Best Practices for Naming REST API Endpoints](https://restfulapi.net/resource-naming/)
 
