@@ -5,9 +5,9 @@ const app = express() // Creates an instance of express
 app.use(express.json()) // Enables request body parsing to be in json format
 const errorHandler = require('./utils/errorHandler')
 
-// Defines the port the app will run on. Defaults to 3000 (8080 is usually also used as default)
+// Defines the port the app will run on. Defaults to 8080
 // Can be overridden when starting the server. For example using an .env file or running with the command PORT=9000 npm start
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8080
 
 // Starts the server, tells to express to listen to requests on specified port
 app.listen(port, () => {
